@@ -1,93 +1,310 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mini Browser</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rencana Belajar JLPT N4</title>
   <style>
-    * { box-sizing: border-box; }
+    :root {
+      --bg: #faf7f2;
+      --surface: #ffffff;
+      --text: #1f1d1a;
+      --muted: #6b665e;
+      --accent: #c8372d;
+      --accent-soft: #f6e3e1;
+      --line: #e7e1d7;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #161412;
+        --surface: #211e1b;
+        --text: #f1ede6;
+        --muted: #a49d92;
+        --accent: #ef6a5e;
+        --accent-soft: #3a2421;
+        --line: #342f2a;
+      }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      margin: 0;
-      font-family: sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 56px 16px 32px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .tag {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: clamp(1.9rem, 6vw, 3rem);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .sub { color: var(--muted); margin-bottom: 24px; }
+
+    nav {
       display: flex;
-      flex-direction: column;
-      height: 100vh;
-      background: #121214;
-      color: #a1a1aa;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
     }
-    .toolbar {
-      display: flex;
-      gap: 6px;
-      padding: 8px;
-      background: #1c1c1f;
-      border-bottom: 1px solid #27272a;
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      transition: border-color .15s, color .15s;
     }
-    button {
-      padding: 8px 12px;
-      border: 1px solid #27272a;
-      border-radius: 6px;
-      background: #27272a;
-      color: #d4d4d8;
-      cursor: pointer;
+    nav a:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Layout */
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 16px 48px;
     }
-    input {
-      flex: 1;
-      min-width: 0;
-      padding: 8px 10px;
-      border-radius: 6px;
-      border: 1px solid #27272a;
-      background: #121214;
-      color: #e4e4e7;
-      outline: none;
+    section { margin-top: 48px; }
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      padding-left: 12px;
+      border-left: 4px solid var(--accent);
     }
-    iframe {
-      flex: 1;
-      width: 100%;
-      border: none;
-      background: #fff;
+    h3 { font-size: 1.1rem; margin-bottom: 8px; }
+    h3 small { color: var(--muted); font-weight: 400; margin-left: 6px; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px 20px;
+    }
+    .card ul { padding-left: 20px; }
+    .card li + li { margin-top: 4px; }
+
+    .grid { display: grid; gap: 12px; }
+    .grid.three { grid-template-columns: repeat(3, 1fr); }
+    .grid.two { grid-template-columns: repeat(2, 1fr); }
+
+    /* Stats */
+    .stat { text-align: center; }
+    .num {
+      display: block;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.1;
+    }
+    .label { font-size: 0.85rem; color: var(--muted); }
+    .note { margin-top: 12px; color: var(--muted); font-size: 0.92rem; }
+
+    /* Timeline */
+    .timeline {
+      list-style: none;
+      position: relative;
+      padding-left: 28px;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: var(--line);
+    }
+    .phase { position: relative; margin-bottom: 20px; }
+    .phase::before {
+      content: "";
+      position: absolute;
+      left: -28px;
+      top: 4px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--bg);
+    }
+    .when {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 6px;
+    }
+
+    /* Table */
+    table { width: 100%; border-collapse: collapse; }
+    td { padding: 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    td:first-child { width: 80px; font-weight: 600; color: var(--accent); }
+
+    /* Callout */
+    .callout { background: var(--accent-soft); border-color: transparent; }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 24px 16px 40px;
+      font-size: 0.9rem;
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .grid.three, .grid.two { grid-template-columns: 1fr; }
+      .hero { padding-top: 40px; }
     }
   </style>
 </head>
 <body>
-  <div class="toolbar">
-    <button onclick="goBack()">←</button>
-    <button onclick="goForward()">→</button>
-    <button onclick="reloadPage()">↻</button>
-    <input id="urlInput" type="text" placeholder="Ketik URL (misal: wikipedia.org)" onkeydown="if(event.key==='Enter') loadUrl()" />
-    <button onclick="loadUrl()">Go</button>
-  </div>
-  <iframe id="viewer" src="https://id.m.wikipedia.org"></iframe>
 
-  <script>
-    const viewer = document.getElementById('viewer');
-    const urlInput = document.getElementById('urlInput');
+  <header class="hero">
+    <p class="tag">日本語 · JLPT N4</p>
+    <h1>Rencana Belajar N4<br>dalam 7 Bulan</h1>
+    <p class="sub">Target tes Juli 2027 · sekitar 1–1,5 jam per hari · cek tanggal resmi di situs JLPT Indonesia.</p>
+    <nav>
+      <a href="#target">Target</a>
+      <a href="#fase">Fase</a>
+      <a href="#harian">Harian</a>
+      <a href="#tips">Tips</a>
+    </nav>
+  </header>
 
-    function normalizeUrl(raw) {
-      let url = raw.trim();
-      if (!url) return '';
-      if (!url.startsWith('http://') && !url.startsWith('https://')) {
-        url = 'https://' + url;
-      }
-      return url;
-    }
+  <main>
 
-    function loadUrl() {
-      const url = normalizeUrl(urlInput.value);
-      if (!url) return;
-      viewer.src = url;
-    }
+    <section id="target">
+      <h2>Syarat Lulus</h2>
+      <div class="grid three">
+        <div class="card stat">
+          <span class="num">90</span>
+          <span class="label">skor total minimal dari 180</span>
+        </div>
+        <div class="card stat">
+          <span class="num">38</span>
+          <span class="label">minimal bagian bahasa &amp; membaca (dari 120)</span>
+        </div>
+        <div class="card stat">
+          <span class="num">19</span>
+          <span class="label">minimal listening (dari 60)</span>
+        </div>
+      </div>
+      <p class="note">Total tinggi tapi salah satu bagian di bawah batas tetap gagal. Listening paling sering jadi penyebab.</p>
+    </section>
 
-    function goBack() {
-      try { viewer.contentWindow.history.back(); } catch (e) {}
-    }
+    <section id="fase">
+      <h2>Fase Belajar</h2>
+      <ol class="timeline">
 
-    function goForward() {
-      try { viewer.contentWindow.history.forward(); } catch (e) {}
-    }
+        <li class="phase">
+          <div class="when">Minggu 1–2</div>
+          <div class="card">
+            <h3>Fase 0 · Fondasi</h3>
+            <ul>
+              <li>Hafal tuntas hiragana dan katakana</li>
+              <li>Cek level N5: kanji ~100, kosakata ~800, tata bahasa dasar</li>
+              <li>Kalau bolong, tambal dulu sebelum lanjut ke N4</li>
+            </ul>
+          </div>
+        </li>
 
-    function reloadPage() {
-      viewer.src = viewer.src;
-    }
-  </script>
+        <li class="phase">
+          <div class="when">Bulan 1–2</div>
+          <div class="card">
+            <h3>Fase 1 · Tuntaskan N5</h3>
+            <ul>
+              <li>Pilih satu buku: Minna no Nihongo I atau Genki I</li>
+              <li>Anki untuk kosakata dan kanji N5</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="phase">
+          <div class="when">Bulan 3–5</div>
+          <div class="card">
+            <h3>Fase 2 · Materi N4</h3>
+            <ul>
+              <li>Tata bahasa: bentuk te, ta, kamus, pengandaian, pasif, kausatif dasar</li>
+              <li>Kanji sampai ~300, kosakata sampai ~1.500</li>
+              <li>Genki II atau Minna no Nihongo II</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="phase">
+          <div class="when">Bulan 6–7</div>
+          <div class="card">
+            <h3>Fase 3 · Latihan Soal</h3>
+            <ul>
+              <li>Kerjakan soal JLPT tahun lalu, hitung skor per bagian</li>
+              <li>Fokus tambal bagian terlemah, terutama listening</li>
+            </ul>
+          </div>
+        </li>
+
+      </ol>
+    </section>
+
+    <section id="harian">
+      <h2>Rutinitas</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>Harian <small>~75 menit</small></h3>
+          <table>
+            <tr><td>20 mnt</td><td>Anki (kosakata + kanji)</td></tr>
+            <tr><td>30 mnt</td><td>Tata bahasa / buku</td></tr>
+            <tr><td>15 mnt</td><td>Listening (NHK Easy, podcast pemula)</td></tr>
+            <tr><td>10 mnt</td><td>Kanji / latihan tulis</td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Mingguan</h3>
+          <ul>
+            <li>1× roleplay percakapan (konbini, wawancara kerja, dll.)</li>
+            <li>1× review semua yang salah</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="tips">
+      <h2>Catatan Penting</h2>
+      <div class="card callout">
+        <ul>
+          <li><strong>Konsisten &gt; lama.</strong> 45 menit tiap hari lebih baik daripada 4 jam sekali seminggu.</li>
+          <li><strong>Listening dari awal.</strong> Jangan ditunda ke akhir.</li>
+          <li><strong>Satu buku saja.</strong> Jangan ganti-ganti materi di tengah jalan.</li>
+          <li><strong>Mulai sekarang.</strong> Belajar dulu, perbaiki rencana sambil jalan.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>頑張って！ Semangat belajarnya.</footer>
+
 </body>
 </html>
