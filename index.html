@@ -2,178 +2,127 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Rencana Belajar JLPT N4</title>
   <style>
     :root {
-      --bg: #faf7f2;
+      --bg: #faf9f5;
       --surface: #ffffff;
-      --text: #1f1d1a;
-      --muted: #6b665e;
-      --accent: #c8372d;
-      --accent-soft: #f6e3e1;
-      --line: #e7e1d7;
+      --text: #141413;
+      --muted: #73726c;
+      --accent: #c96442;
+      --accent-soft: #f3e4db;
+      --line: #e8e6dc;
+      color-scheme: light;
     }
-
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #161412;
-        --surface: #211e1b;
-        --text: #f1ede6;
-        --muted: #a49d92;
-        --accent: #ef6a5e;
-        --accent-soft: #3a2421;
-        --line: #342f2a;
+        --bg: #262624;
+        --surface: #30302e;
+        --text: #faf9f5;
+        --muted: #a3a199;
+        --accent: #d97757;
+        --accent-soft: #3d2d26;
+        --line: #43423f;
+        color-scheme: dark;
       }
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
       background: var(--bg);
       color: var(--text);
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
       line-height: 1.6;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
     }
-
-    /* Hero */
-    .hero {
-      text-align: center;
-      padding: 56px 16px 32px;
-      max-width: 760px;
-      margin: 0 auto;
-    }
+    .hero { text-align: center; padding: 56px 16px 32px; max-width: 760px; margin: 0 auto; }
     .tag {
-      display: inline-block;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-weight: 600;
-      font-size: 0.85rem;
-      padding: 4px 14px;
-      border-radius: 999px;
-      margin-bottom: 16px;
+      display: inline-block; background: var(--accent-soft); color: var(--accent);
+      font-weight: 600; font-size: 0.85rem; padding: 4px 14px; border-radius: 999px; margin-bottom: 16px;
     }
-    .hero h1 {
-      font-size: clamp(1.9rem, 6vw, 3rem);
-      line-height: 1.2;
-      margin-bottom: 12px;
-    }
+    .hero h1 { font-size: clamp(1.9rem, 6vw, 3rem); line-height: 1.2; margin-bottom: 12px; }
     .sub { color: var(--muted); margin-bottom: 24px; }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
+    nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
     nav a {
-      color: var(--text);
-      text-decoration: none;
-      border: 1px solid var(--line);
-      background: var(--surface);
-      padding: 6px 16px;
-      border-radius: 999px;
-      font-size: 0.9rem;
+      color: var(--text); text-decoration: none; border: 1px solid var(--line);
+      background: var(--surface); padding: 6px 16px; border-radius: 999px; font-size: 0.9rem;
       transition: border-color .15s, color .15s;
     }
     nav a:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* Layout */
-    main {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 0 16px 48px;
-    }
+    main { max-width: 760px; margin: 0 auto; padding: 0 16px 48px; }
     section { margin-top: 48px; }
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: 16px;
-      padding-left: 12px;
-      border-left: 4px solid var(--accent);
-    }
+    h2 { font-size: 1.5rem; margin-bottom: 16px; padding-left: 12px; border-left: 4px solid var(--accent); }
     h3 { font-size: 1.1rem; margin-bottom: 8px; }
     h3 small { color: var(--muted); font-weight: 400; margin-left: 6px; }
-
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 18px 20px;
-    }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
     .card ul { padding-left: 20px; }
     .card li + li { margin-top: 4px; }
-
     .grid { display: grid; gap: 12px; }
     .grid.three { grid-template-columns: repeat(3, 1fr); }
     .grid.two { grid-template-columns: repeat(2, 1fr); }
-
-    /* Stats */
     .stat { text-align: center; }
-    .num {
-      display: block;
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: var(--accent);
-      line-height: 1.1;
-    }
+    .num { display: block; font-size: 2.4rem; font-weight: 700; color: var(--accent); line-height: 1.1; }
     .label { font-size: 0.85rem; color: var(--muted); }
     .note { margin-top: 12px; color: var(--muted); font-size: 0.92rem; }
-
-    /* Timeline */
-    .timeline {
-      list-style: none;
-      position: relative;
-      padding-left: 28px;
-    }
+    .timeline { list-style: none; position: relative; padding-left: 28px; }
     .timeline::before {
-      content: "";
-      position: absolute;
-      left: 6px;
-      top: 6px;
-      bottom: 6px;
-      width: 2px;
-      background: var(--line);
+      content: ""; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 2px; background: var(--line);
     }
     .phase { position: relative; margin-bottom: 20px; }
     .phase::before {
-      content: "";
-      position: absolute;
-      left: -28px;
-      top: 4px;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: var(--accent);
-      border: 3px solid var(--bg);
+      content: ""; position: absolute; left: -28px; top: 4px; width: 14px; height: 14px;
+      border-radius: 50%; background: var(--accent); border: 3px solid var(--bg);
     }
     .when {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: .05em;
-      margin-bottom: 6px;
+      font-size: 0.8rem; font-weight: 600; color: var(--accent); text-transform: uppercase;
+      letter-spacing: .05em; margin-bottom: 6px;
     }
-
-    /* Table */
     table { width: 100%; border-collapse: collapse; }
     td { padding: 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
     tr:last-child td { border-bottom: none; }
     td:first-child { width: 80px; font-weight: 600; color: var(--accent); }
-
-    /* Callout */
     .callout { background: var(--accent-soft); border-color: transparent; }
-
-    footer {
-      text-align: center;
-      color: var(--muted);
-      padding: 24px 16px 40px;
-      font-size: 0.9rem;
+    footer { text-align: center; color: var(--muted); padding: 24px 16px 40px; font-size: 0.9rem; }
+    .credit { margin-top: 12px; color: var(--text); }
+    .wa {
+      display: inline-block; margin-top: 10px; padding: 8px 18px; border-radius: 999px;
+      background: var(--accent); color: #fff; text-decoration: none; font-weight: 600; font-size: 0.9rem;
     }
-
-    /* Mobile */
+    .wa:hover { opacity: .9; }
+    .heat { display: grid; grid-template-columns: repeat(14, 1fr); gap: 4px; margin-top: 8px; }
+    .cell { aspect-ratio: 1; border-radius: 4px; background: var(--line); }
+    .tm { font-size: 3rem; font-weight: 700; text-align: center; font-variant-numeric: tabular-nums; color: var(--accent); }
+    .btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 8px; }
+    .btn { font: inherit; font-size: 0.9rem; cursor: pointer; border: 1px solid var(--line); background: var(--surface); color: var(--text); padding: 6px 16px; border-radius: 999px; }
+    .btn.main { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+    .progress { margin-bottom: 20px; }
+    .track { height: 8px; background: var(--line); border-radius: 999px; overflow: hidden; }
+    #bar { height: 100%; width: 0; background: var(--accent); transition: width .3s; }
+    #ptxt { font-size: 0.85rem; color: var(--muted); margin-top: 6px; }
+    .done { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 0.9rem; color: var(--muted); cursor: pointer; }
+    .done input { width: 18px; height: 18px; accent-color: var(--accent); }
+    body { padding-top: 0; }
+    html { scroll-padding-top: 72px; }
+    section { scroll-margin-top: 72px; }
+    h1, h2, h3, .num, .tm, .brand { font-family: ui-serif, Georgia, "Times New Roman", serif; font-weight: 500; }
+    h2 { border-left: none; padding-left: 0; }
+    .hero nav { display: none; }
+    .card { border-radius: 16px; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+    .topbar { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 10px; padding: 8px 12px; padding-top: calc(8px + env(safe-area-inset-top, 0px)); background: var(--bg); border-bottom: 1px solid var(--line); }
+    .brand { font-size: 1.15rem; }
+    .menu-btn { width: 40px; height: 40px; border: none; border-radius: 10px; background: transparent; color: var(--text); cursor: pointer; display: grid; place-items: center; }
+    .menu-btn:hover { background: var(--accent-soft); }
+    .scrim { position: fixed; inset: 0; background: rgba(0,0,0,.4); opacity: 0; pointer-events: none; transition: opacity .25s; z-index: 30; }
+    .scrim.open { opacity: 1; pointer-events: auto; }
+    .drawer { position: fixed; top: 0; left: 0; bottom: 0; width: min(300px, 82vw); background: var(--surface); border-right: 1px solid var(--line); transform: translateX(-100%); transition: transform .25s; z-index: 40; padding: calc(16px + env(safe-area-inset-top, 0px)) 12px calc(16px + env(safe-area-inset-bottom, 0px)); display: flex; flex-direction: column; gap: 2px; overflow-y: auto; }
+    .drawer.open { transform: none; }
+    .drawer .dh { display: flex; align-items: center; gap: 8px; padding: 4px 12px 14px; font-size: 1.2rem; }
+    .drawer .dh span { color: var(--accent); font-size: 1.5rem; line-height: 1; }
+    .drawer a { display: block; padding: 10px 12px; border-radius: 10px; color: var(--text); text-decoration: none; }
+    .drawer a:hover { background: var(--accent-soft); }
+    .drawer .df { margin-top: auto; padding: 12px; font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--line); }
     @media (max-width: 600px) {
       .grid.three, .grid.two { grid-template-columns: 1fr; }
       .hero { padding-top: 40px; }
@@ -182,12 +131,31 @@
 </head>
 <body>
 
+  <div class="topbar">
+    <button class="menu-btn" id="menu" aria-label="Buka menu" aria-expanded="false">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <span class="brand">Rencana Belajar N4</span>
+  </div>
+  <div class="scrim" id="scrim"></div>
+  <aside class="drawer" id="drawer">
+    <div class="dh brand"><span>✻</span> JLPT N4</div>
+    <a href="#target">Syarat Lulus</a>
+    <a href="#pelacak">Pelacak Harian</a>
+    <a href="#fase">Fase Belajar</a>
+    <a href="#harian">Rutinitas</a>
+    <a href="#tips">Catatan Penting</a>
+    <div class="df">Dibuat oleh <strong>Firmansyah</strong><br><a href="https://wa.me/6283155628969" target="_blank" rel="noopener" style="padding:6px 0;color:var(--accent)">WhatsApp</a></div>
+  </aside>
+
+
   <header class="hero">
     <p class="tag">日本語 · JLPT N4</p>
     <h1>Rencana Belajar N4<br>dalam 7 Bulan</h1>
     <p class="sub">Target tes Juli 2027 · sekitar 1–1,5 jam per hari · cek tanggal resmi di situs JLPT Indonesia.</p>
     <nav>
       <a href="#target">Target</a>
+      <a href="#pelacak">Pelacak</a>
       <a href="#fase">Fase</a>
       <a href="#harian">Harian</a>
       <a href="#tips">Tips</a>
@@ -199,26 +167,35 @@
     <section id="target">
       <h2>Syarat Lulus</h2>
       <div class="grid three">
-        <div class="card stat">
-          <span class="num">90</span>
-          <span class="label">skor total minimal dari 180</span>
-        </div>
-        <div class="card stat">
-          <span class="num">38</span>
-          <span class="label">minimal bagian bahasa &amp; membaca (dari 120)</span>
-        </div>
-        <div class="card stat">
-          <span class="num">19</span>
-          <span class="label">minimal listening (dari 60)</span>
-        </div>
+        <div class="card stat"><span class="num">90</span><span class="label">skor total minimal dari 180</span></div>
+        <div class="card stat"><span class="num">38</span><span class="label">minimal bagian bahasa &amp; membaca (dari 120)</span></div>
+        <div class="card stat"><span class="num">19</span><span class="label">minimal listening (dari 60)</span></div>
       </div>
       <p class="note">Total tinggi tapi salah satu bagian di bawah batas tetap gagal. Listening paling sering jadi penyebab.</p>
     </section>
 
+    <section id="pelacak">
+      <h2>Pelacak Harian</h2>
+      <div class="grid two">
+        <div class="card stat"><span class="num" id="cd">–</span><span class="label">hari menuju tes (perkiraan 4 Juli 2027)</span></div>
+        <div class="card stat"><span class="num" id="streak">0</span><span class="label">hari beruntun belajar</span></div>
+      </div>
+      <div class="card" style="margin-top:12px"><h3>Hari ini <small id="today"></small></h3><div id="tasks"></div></div>
+      <div class="card" style="margin-top:12px"><h3>28 hari terakhir</h3><div id="heat" class="heat"></div></div>
+      <div class="card" style="margin-top:12px">
+        <h3>Timer belajar</h3>
+        <div class="tm" id="tm">20:00</div>
+        <div class="btns">
+          <button class="btn" data-m="10">10</button><button class="btn" data-m="15">15</button><button class="btn" data-m="20">20</button><button class="btn" data-m="30">30</button>
+        </div>
+        <div class="btns"><button class="btn main" id="go">Mulai</button><button class="btn" id="rs">Reset</button></div>
+      </div>
+    </section>
+
     <section id="fase">
       <h2>Fase Belajar</h2>
+      <div class="progress"><div class="track"><div id="bar"></div></div><p id="ptxt"></p></div>
       <ol class="timeline">
-
         <li class="phase">
           <div class="when">Minggu 1–2</div>
           <div class="card">
@@ -230,7 +207,6 @@
             </ul>
           </div>
         </li>
-
         <li class="phase">
           <div class="when">Bulan 1–2</div>
           <div class="card">
@@ -241,7 +217,6 @@
             </ul>
           </div>
         </li>
-
         <li class="phase">
           <div class="when">Bulan 3–5</div>
           <div class="card">
@@ -253,7 +228,6 @@
             </ul>
           </div>
         </li>
-
         <li class="phase">
           <div class="when">Bulan 6–7</div>
           <div class="card">
@@ -264,7 +238,6 @@
             </ul>
           </div>
         </li>
-
       </ol>
     </section>
 
@@ -304,7 +277,75 @@
 
   </main>
 
-  <footer>頑張って！ Semangat belajarnya.</footer>
+  <footer>
+    頑張って！ Semangat belajarnya.
+    <p class="credit">Dibuat oleh <strong>Firmansyah</strong></p>
+    <a class="wa" href="https://wa.me/6283155628969" target="_blank" rel="noopener">Hubungi via WhatsApp</a>
+  </footer>
 
+<script>
+(function(){
+ var K='n4-progress',s={};
+ try{s=JSON.parse(localStorage.getItem(K))||{}}catch(e){}
+ var ph=document.querySelectorAll('.phase'),bar=document.getElementById('bar'),txt=document.getElementById('ptxt');
+ function upd(){var n=0;ph.forEach(function(p){if(p.querySelector('input').checked)n++});
+  bar.style.width=(n/ph.length*100)+'%';txt.textContent=n+' dari '+ph.length+' fase selesai';}
+ ph.forEach(function(p,i){var l=document.createElement('label');l.className='done';
+  l.innerHTML='<input type="checkbox"> Tandai selesai';var c=l.querySelector('input');c.checked=!!s[i];
+  c.addEventListener('change',function(){s[i]=c.checked;try{localStorage.setItem(K,JSON.stringify(s))}catch(e){}upd()});
+  p.querySelector('.card').appendChild(l)});
+ upd();
+})();
+</script>
+<script>
+(function(){
+ var K='n4-log',log={};
+ try{log=JSON.parse(localStorage.getItem(K))||{}}catch(e){}
+ function key(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+ function save(){try{localStorage.setItem(K,JSON.stringify(log))}catch(e){}}
+ function cnt(k){return log[k]?log[k].reduce(function(a,b){return a+b},0):0}
+ var T=['Anki (20 mnt)','Tata bahasa (30 mnt)','Listening (15 mnt)','Kanji (10 mnt)'];
+ var now=new Date(),tk=key(now);
+ document.getElementById('today').textContent=now.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long'});
+ document.getElementById('cd').textContent=Math.max(0,Math.ceil((new Date(2027,6,4)-now)/864e5));
+ var tasks=document.getElementById('tasks');
+ T.forEach(function(t,i){var l=document.createElement('label');l.className='done';
+  l.innerHTML='<input type="checkbox"> '+t;var c=l.querySelector('input');
+  c.checked=!!(log[tk]&&log[tk][i]);
+  c.addEventListener('change',function(){var a=log[tk]||[0,0,0,0];a[i]=c.checked?1:0;log[tk]=a;save();draw()});
+  tasks.appendChild(l)});
+ function draw(){
+  var h=document.getElementById('heat');h.innerHTML='';
+  for(var i=27;i>=0;i--){var d=new Date(now);d.setDate(d.getDate()-i);var n=cnt(key(d));
+   var c=document.createElement('div');c.className='cell';c.title=key(d)+': '+n+'/4';
+   if(n){c.style.background='var(--accent)';c.style.opacity=0.25+n*0.1875}
+   h.appendChild(c)}
+  var s=0,d2=new Date(now);if(!cnt(key(d2)))d2.setDate(d2.getDate()-1);
+  while(cnt(key(d2))){s++;d2.setDate(d2.getDate()-1)}
+  document.getElementById('streak').textContent=s;
+ }
+ draw();
+ var pre=20,left=1200,iv=null,tm=document.getElementById('tm'),go=document.getElementById('go'),orig=document.title;
+ function show(){tm.textContent=String(Math.floor(left/60)).padStart(2,'0')+':'+String(left%60).padStart(2,'0')}
+ function stop(){clearInterval(iv);iv=null;go.textContent='Mulai'}
+ function reset(){stop();left=pre*60;document.title=orig;show()}
+ go.addEventListener('click',function(){
+  if(iv){stop();return}
+  go.textContent='Jeda';
+  iv=setInterval(function(){left--;show();if(left<=0){stop();document.title='Waktu habis!';if(navigator.vibrate)navigator.vibrate(400)}},1000)});
+ document.getElementById('rs').addEventListener('click',reset);
+ document.querySelectorAll('[data-m]').forEach(function(b){b.addEventListener('click',function(){pre=+b.dataset.m;reset()})});
+})();
+</script>
+<script>
+(function(){
+ var d=document.getElementById('drawer'),s=document.getElementById('scrim'),b=document.getElementById('menu');
+ function set(o){d.classList.toggle('open',o);s.classList.toggle('open',o);b.setAttribute('aria-expanded',o)}
+ b.addEventListener('click',function(){set(!d.classList.contains('open'))});
+ s.addEventListener('click',function(){set(false)});
+ d.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){set(false)})});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
+})();
+</script>
 </body>
 </html>
